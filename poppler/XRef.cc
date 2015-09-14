@@ -1076,49 +1076,38 @@ void XRef::getEncryptionParameters(Guchar **fileKeyA, CryptAlgorithm *encAlgorit
 }
 
 GBool XRef::okToPrint(GBool ignoreOwnerPW) {
-  return (!ignoreOwnerPW && ownerPasswordOk) || (permFlags & permPrint);
+  return gTrue;
 }
 
 // we can print at high res if we are only doing security handler revision
 // 2 (and we are allowed to print at all), or with security handler rev
 // 3 and we are allowed to print, and bit 12 is set.
 GBool XRef::okToPrintHighRes(GBool ignoreOwnerPW) {
-  if (encrypted) {
-    if (2 == encRevision) {
-      return (okToPrint(ignoreOwnerPW));
-    } else if (encRevision >= 3) {
-      return (okToPrint(ignoreOwnerPW) && (permFlags & permHighResPrint));
-    } else {
-      // something weird - unknown security handler version
-      return gFalse;
-    }
-  } else {
-    return gTrue;
-  }
+  return gTrue;
 }
 
 GBool XRef::okToChange(GBool ignoreOwnerPW) {
-  return (!ignoreOwnerPW && ownerPasswordOk) || (permFlags & permChange);
+  return gTrue;
 }
 
 GBool XRef::okToCopy(GBool ignoreOwnerPW) {
-  return (!ignoreOwnerPW && ownerPasswordOk) || (permFlags & permCopy);
+  return gTrue;
 }
 
 GBool XRef::okToAddNotes(GBool ignoreOwnerPW) {
-  return (!ignoreOwnerPW && ownerPasswordOk) || (permFlags & permNotes);
+  return gTrue;
 }
 
 GBool XRef::okToFillForm(GBool ignoreOwnerPW) {
-  return (!ignoreOwnerPW && ownerPasswordOk) || (permFlags & permFillForm);
+  return gTrue;
 }
 
 GBool XRef::okToAccessibility(GBool ignoreOwnerPW) {
-  return (!ignoreOwnerPW && ownerPasswordOk) || (permFlags & permAccessibility);
+  return gTrue;
 }
 
 GBool XRef::okToAssemble(GBool ignoreOwnerPW) {
-  return (!ignoreOwnerPW && ownerPasswordOk) || (permFlags & permAssemble);
+  return gTrue;
 }
 
 Object *XRef::getCatalog(Object *catalog) {
